@@ -1,11 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function Page() {
+    const [posts, setPosts] = useState<{id: number, title: string}[]>([]);
+
+    useEffect(() => {
+        setPosts([
+            {id: 1, title: "명언 1"},
+            {id: 2, title: "명언 2"},
+        ]);
+    }, []);
+
   return <>
     <h1>글 목록</h1>
     <ul>
-        <li>명언 1</li>
-        <li>명언 2</li>
+        {posts.map((post) => (
+            <li key={post.id}>{post.title}</li>
+        ))}
     </ul>
   </>;
 }
