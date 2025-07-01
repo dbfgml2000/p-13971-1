@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Page() {
     const [posts, setPosts] = useState<{[key: string]: any}[]>([]);
 
     useEffect(() => {
+        /* 프로미스 */
         fetch("http://localhost:8080/api/v1/posts")
         .then((res)=>res.json())
         .then(setPosts)
@@ -16,7 +18,9 @@ export default function Page() {
     {posts.length == 0 && <div>로딩중...</div>}
     <ul>
         {posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
+            <li key={post.id}>
+                <Link href={`/posts/${post.id}`}>{post.title}</Link>
+                </li>
         ))}
     </ul>
   </>;

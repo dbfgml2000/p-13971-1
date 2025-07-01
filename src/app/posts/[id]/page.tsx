@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
-export default function Page() {
+export default function Page({ params }: { params: Promise<{ id: number }> }) {
+    const {id} = use(params);
     const [post, setPost] = useState<{
         id: number;
         title: string;
